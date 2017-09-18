@@ -75,6 +75,14 @@ You will add a `pstat.h` file that can be included both in user-level and in the
 It should only include the definition of the `struct pstat` structure.
 You should add your `procstat` system call as normal in the `user.h` file.
 Additionally, you'll add a `ps` function at user-level in `ulib.c` that uses your `procstat` system call and prints out information about all of the system's processes.
+Add its prototype in `user.h` (just as the system does with, for example, `memset`).
+
+All our test files that call your system call or the `ps` function should be able to compile by simply using:
+```
+#include "user.h"
+#include "pstat.h"
+```
+Please test this.
 
 ## Implementing the `ps`
 
