@@ -4,6 +4,7 @@ As you dive further into the inner workings of `xv6`, you'll get experience with
 A significant challenge in these homeworks (and the labs preceding them) is *reading* and *understanding* the `xv6` source.
 Be prepared that this is a huge amount of the time you'll spend during the homework.
 The amount of code you finally end up writing will likely be small, but slogging through the code will take a lot of time.
+Please remember that the `xv6` book is a great resource for better understanding most aspects of the source code.
 
 You should view the first four hours of this assignment as a scavenger hunt to find the relevant parts of the code to
 
