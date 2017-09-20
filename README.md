@@ -112,7 +112,7 @@ An example output of `ps` for a system might include:
 4 3 R pstest
 ```
 
-Here, the second entry is the child of the first, and the second is running on the CPU while the second one is runnable, but not chosen by the scheduler to be currently running.
+Here, the second entry is the child of the first, and the second is running on the CPU while the first one is runnable, but not chosen by the scheduler to be currently running.
 Note they have the same name which might mean that they are forks of the same initial program called `pstest`.
 
 **Recommendation.**
