@@ -52,7 +52,8 @@ struct pstat {
 
 Each of the fields of this struct convey some information about the chosen process.
 The `pid` is the process id of the process you're printing information for.
-`ppid` is that process' parent's process id (pid).
+`ppid` is that process' parent's process id (`pid`).
+The `init` process should have its own `pid` as its `ppid`.
 `name` is the process' name that is stored in its structure.
 The `state` is the process state (i.e. the `procstate`).
 Each process' state should be printed as:
