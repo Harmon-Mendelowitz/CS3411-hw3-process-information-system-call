@@ -29,7 +29,7 @@ You've already implemented a system call in lab.
 You'll replicate the same procedure by adding a `procstat` system call with the prototype:
 
 ```
-int procstat(int which, struct pstat *ps);
+int procstat(uint which, struct pstat *ps);
 ```
 
 The `which` argument specifies which of the active processes in the system, the caller wants to get information about.
@@ -38,6 +38,7 @@ For example, `which` of `0` means that you want information about the "0th" proc
 
 The return value will be `0` while the system call returns information about the process in the `struct pstat` argument.
 However, after `which` gets as large as the number of active processes in the system, then this function should return `1` to indicate that the caller has iterated through each process in the system.
+Any error cases (not enumerated here) should return `-1`.
 
 The `struct pstat` argument is how the information about the chosen process is returned.
 It should be defined *exactly* as:
