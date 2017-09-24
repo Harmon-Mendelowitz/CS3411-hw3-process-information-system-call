@@ -139,7 +139,7 @@ Our program must compile on your system, so please don't change any existing API
 The three patterns of forking we will use to test your implementation are:
 
 - Parent forks 8 children, then calls `ps`.
-- Parent forks a single child, that forks a single child, and so on until there are 8 processes in the ancestry from the original parent, then call `ps`.  
+- Parent forks a single child, that forks a single child, and so on until there are 8 processes in the ancestry from the original parent, then call `ps`.
     This will, in total, create 8 processes that are children, grandchildren, etc... of the parent (9 processes in total).
 - Parent forks two children, and they each fork two children, then call `ps`.
 
@@ -152,6 +152,6 @@ Please submit these three test programs, respectively, as
 
 # Academic Integrity
 
-As with any of the assignments for this class, you *cannot* share your code, or view other's code.
+As with any of the assignments for this class, you *cannot ever* share your code for this class, or view other's code.
 Please remember the academic integrity contract you signed.
 Cheating is the fastest and easiest way to fail this class.
