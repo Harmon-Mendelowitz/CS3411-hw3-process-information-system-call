@@ -144,7 +144,7 @@ The three patterns of forking we will use to test your implementation are:
 - Parent forks 8 children, then calls `ps`.
 - Parent forks a single child, that forks a single child, and so on until there are 8 processes in the ancestry from the original parent, then call `ps`.
     This will, in total, create 8 processes that are children, grandchildren, etc... of the parent (9 processes in total).
-- Parent forks two children, and they each fork two children, then call `ps`.
+- Parent forks two children, and they each fork two children, then the original parent calls `ps`.
 
 You must test your program with these configurations of processes to validate that the `ps` outputs are correct, thus you must practice using the `fork` API.
 Please submit these three test programs, respectively, as
