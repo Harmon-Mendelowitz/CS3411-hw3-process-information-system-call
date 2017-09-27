@@ -33,7 +33,7 @@ int procstat(uint which, struct pstat *ps);
 ```
 
 The `which` argument specifies which of the active processes in the system, the caller wants to get information about.
-It is intended to allow the caller to iterate through each process in the system.
+It is intended to allow the caller to iterate through each active process in the system.
 For example, `which` of `0` means that you want information about the "0th" process that is active in the system, while `which` of `1` should give you information about the "1st".
 
 The return value will be `0` while the system call returns information about the process in the `struct pstat` argument.
@@ -65,7 +65,8 @@ Each process' state should be printed as:
 - `R` for `RUNNING`
 - `Z` for `ZOMBIE`
 
-Note that if a process is in the `UNUSED` state, then it is freed, and you should *not* print out information for it.
+Note that if a process is in the `UNUSED` state, then it is freed, and you should *not* return information for it.
+The processes in the `UNUSED` state are *inactive* processes in the system, and `which` specifies which if the *active* processes it wants information for.
 
 **Recommendation.**
 I'd strongly recommend that you read and understand how the `fstat` system call passes the `struct stat`, and how the kernel populates it.
@@ -116,6 +117,8 @@ An example output of `ps` for a system might include:
 
 Here, the second entry is the child of the first, and the second is running on the CPU while the first one is runnable, but not chosen by the scheduler to be currently running.
 Note they have the same name which might mean that they are forks of the same initial program called `pstest`.
+We are autograding this, so please adhere to this format exactly.
+There is only a space between each column, and there is no heading or trailing space.
 
 **Recommendation.**
 You should use the `printf` function to print your output in the `ps` function.
