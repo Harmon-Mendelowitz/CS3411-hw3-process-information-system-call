@@ -40,6 +40,12 @@ The return value will be `0` while the system call returns information about the
 However, after `which` gets as large as the number of active processes in the system, then this function should return `1` to indicate that the caller has iterated through each process in the system.
 Any error cases (not enumerated here) should return `-1`.
 
+*Example:*  If there are three *active* processes in the system, then you could call `procstat` three times, with `which` passed in as `0`, `1`, and `2`, each time populating the `ps` argument's struct.
+The fourth time `procstat` is called, it should return `1` to indicate that there are no more active processes.
+
+*Aside:* `which` is *not* the process id, or any similar value.
+Treating it as such will result in loss of points.
+
 The `struct pstat` argument is how the information about the chosen process is returned.
 It should be defined *exactly* as:
 
@@ -57,7 +63,7 @@ The `pid` is the process id of the process you're printing information for.
 The `init` process should have its own `pid` as its `ppid`.
 `name` is the process' name that is stored in its structure.
 The `state` is the process state (i.e. the `procstate`).
-Each process' state should be printed as:
+Each process' state should be:
 
 - `E` for `EMBRYO`
 - `S` for `SLEEPING`
@@ -71,6 +77,7 @@ The processes in the `UNUSED` state are *inactive* processes in the system, and 
 **Recommendation.**
 I'd strongly recommend that you read and understand how the `fstat` system call passes the `struct stat`, and how the kernel populates it.
 How the pointer to the structure is passed to the kernel, and how the kernel populates the structure are very similar to how you will need to do it.
+You *must* perform comparable operations to populate the `struct pstat`.
 Of course, that system call is populating file information, not process information, so *how* the structure with specific data is completely different (i.e. file information vs process information).
 
 **Files.**
@@ -90,6 +97,7 @@ Please test this.
 ## Implementing the `ps`
 
 You'll implement a simple user-level `ps` function in `ulib.c` that uses your system call, and prints out the information.
+This is a *library* function that aids in printing the process information, and it *uses* the kernel system call you created.
 Its prototype is
 
 ```
@@ -119,6 +127,7 @@ Here, the second entry is the child of the first, and the second is running on t
 Note they have the same name which might mean that they are forks of the same initial program called `pstest`.
 We are autograding this, so please adhere to this format exactly.
 There is only a space between each column, and there is no heading or trailing space.
+This formatting *must* be exact; no exceptions.
 
 **Recommendation.**
 You should use the `printf` function to print your output in the `ps` function.
@@ -128,7 +137,7 @@ You want to print to "standard output", which is `1` (as opposed to "standard in
 ### Important Printing Information
 
 I want to be very clear here:
-You are *not* to add any print output to the system in your final submission.
+You are *not* to add any print output to the operating system in your final submission.
 This means that you are *not* to print in the kernel, and not to have prints anywhere other than in your `ps` implementation.
 
 You should generally **never** have debugging output in your final products.
