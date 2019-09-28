@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "pstat.h"
 
 int
 sys_fork(void)
@@ -87,9 +88,7 @@ sys_uptime(void)
 }
 
 int
-sys_procstat(void)
+sys_procstat(uint which, struct pstat *ps)
 {
-	uint which;
-	struct pstat *ps;
-	return procstat(which, ps);
+	return 0;
 }

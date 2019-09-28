@@ -3,7 +3,6 @@
 #include "fcntl.h"
 #include "user.h"
 #include "x86.h"
-#include "pstat.h"
 
 char *
 strcpy(char *s, char *t)
@@ -101,9 +100,11 @@ memmove(void *vdst, void *vsrc, int n)
 void
 ps(void)
 {
-	int pid, ppid;
-	char state;
-	char name[16];
+	//int pid, ppid;
+	//char state;
+	//char name[16];
 	//procstat();
-	printf(1, "%d %d %c %s\n", pid, ppid, state, name);
+	printf(1, "ps\n");
+	return;
+	//printf(1, "%d %d %c %s\n", pid, ppid, state, name);
 }
