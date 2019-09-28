@@ -85,3 +85,11 @@ sys_uptime(void)
 	release(&tickslock);
 	return xticks;
 }
+
+int
+sys_procstat(void)
+{
+	uint which;
+	struct pstat *ps;
+	return procstat(which, ps);
+}

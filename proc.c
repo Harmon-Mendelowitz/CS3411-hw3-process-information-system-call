@@ -6,6 +6,7 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
+#include "pstat.h"
 
 struct {
 	struct spinlock lock;
@@ -505,4 +506,11 @@ procdump(void)
 		}
 		cprintf("\n");
 	}
+}
+
+
+int
+procstat(uint which, struct pstat *ps)
+{
+	return 0;
 }
