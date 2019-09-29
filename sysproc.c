@@ -9,17 +9,29 @@
 #include "pstat.h"
 
 
-static int
+/*static int
 argps(int n, int *pfd, struct pstat **pf)
 {
 	int          fd;
 	struct pstat *f;
 
-	if (argint(n, &fd) < 0) return -1;
-	if (fd < 0) return -1;
+	if (argint(n, &fd) < 0) return -2;
+	if (fd < 0) return -3;
 	if (pfd) *pfd = fd;
-	f = (struct pstat*)kalloc();
+	f = (struct pstat*)(&n + 4);
+	//f = *pf;
 	if (pf) *pf = f;
+	return 0;
+}*/
+int
+argps(int n, struct pstat **pp, int size)
+{
+	int          i;
+	struct proc *curproc = myproc();
+
+	if (argint(n, &i) < 0) return -1;
+	if (size < 0 || (uint)i >= curproc->sz || (uint)i + size > curproc->sz) return -1;
+	*pp = (struct pstat *)i;
 	return 0;
 }
 
@@ -114,11 +126,11 @@ sys_procstat(void)
 
 	int x;
 	struct pstat *ps;
+	//ps = (struct pstat*)sys_sbrk();
 
-	if (argps(1, 0, &ps) < 0 || argint(0, &x) < 0)
-		return -1;
+	if (argint(0, &x) < 0 || argps(1, &ps, x) < 0)
+		return -5;
 	
 	return procstat(x, ps);
 
-	return -1;
 }

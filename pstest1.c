@@ -4,8 +4,18 @@
 int
 main(int argc, char **argv)
 {
-    ps();
-    exit();
+    int f1 = fork();
+
+    if(f1 != 0){
+        ps();
+        wait();
+        exit();
+    }
+    else
+    {
+
+    }
+    
     return 0;
 }
 

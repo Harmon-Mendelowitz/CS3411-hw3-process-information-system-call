@@ -511,5 +511,24 @@ procdump(void)
 int
 procstat(uint which, struct pstat *ps)
 {
-	return 5;
+	struct proc *p;
+	//for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+	p = ptable.proc + (which*4);
+	if(p < &ptable.proc[NPROC])
+	{
+		if(p->state == UNUSED)
+		{
+			return -10;
+		}
+		if(ps != 0){
+			ps->pid = p->pid;
+			strncpy(ps->name, p->name, 16);
+			//ps->name = p->name;
+			ps->ppid = p->parent->pid;
+			ps->state = p->state;
+			return 0;
+		}
+	}
+	//}
+	return 1;
 }
