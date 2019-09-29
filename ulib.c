@@ -102,10 +102,8 @@ void
 ps(void)
 {
 	//loop procstat call using myproc() - syscall
-	//int x = 7;
-	//struct pstat *ps = (struct pstat*);
 
-	struct pstat* p[64];
+	struct pstat* p = (struct pstat*)sbrk(sizeof(struct pstat));
 	
 		//ps->pid = 0;
 		//ps->ppid = 0;
@@ -118,20 +116,22 @@ ps(void)
 	//	return;
 	printf(1, "ps\n");
 	for(int x=0; x<64; x++){
-		p[x] = (struct pstat*)sbrk(sizeof(struct pstat));
-		int a = procstat(x, p[x]);
+		//printf(1, "number: %d\n", x);
+
+		//p[x] = (struct pstat*)sbrk(sizeof(struct pstat));
+		int a = procstat(x, p);
+		//printf(1, "ps %d\n", a);
+
 		if(a == 1){
 			x = 64;
 		}
 		else{
-			if(a != -10){
-				printf(1, "ps %d\n", a);
-				if(p[x] != 0)
-					printf(1, "%d %d %c %s\n", p[x]->pid, p[x]->ppid, p[x]->state, p[x]->name);
+			if(a == 0){
+				if(p != 0)
+					printf(1, "proc: %d %d %c %s\n", p->pid, p->ppid, p->state, p->name);
 			}
 		}
 	}
-	//printf(1, "%d %d %c %s\n", ps->pid, ps->ppid, ps->state, ps->name);
-	//printf(1, "%d %d \n", (ps)->pid, (ps)->ppid);
+	exit();
 	return;
 }

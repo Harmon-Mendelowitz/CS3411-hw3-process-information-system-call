@@ -513,7 +513,7 @@ procstat(uint which, struct pstat *ps)
 {
 	struct proc *p;
 	//for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-	p = ptable.proc + (which*4);
+	p = ptable.proc + (which);
 	if(p < &ptable.proc[NPROC])
 	{
 		if(p->state == UNUSED)
