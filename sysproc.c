@@ -8,6 +8,21 @@
 #include "proc.h"
 #include "pstat.h"
 
+
+static int
+argps(int n, int *pfd, struct pstat **pf)
+{
+	int          fd;
+	struct pstat *f;
+
+	if (argint(n, &fd) < 0) return -1;
+	if (fd < 0) return -1;
+	if (pfd) *pfd = fd;
+	f = (struct pstat*)kalloc();
+	if (pf) *pf = f;
+	return 0;
+}
+
 int
 sys_fork(void)
 {
@@ -88,7 +103,22 @@ sys_uptime(void)
 }
 
 int
-sys_procstat(uint which, struct pstat *ps)
+sys_procstat(void)
 {
-	return 0;
+	//ps = (struct pstat*)malloc(sizeof(struct pstat));
+	//ps = (struct pstat*)sys_sbrk();
+	//ps->pid = 1;
+	//ps->ppid = 1;
+	//ps->state = 0;
+	//memset(&ps->name[0], 0, sizeof(ps->name));
+
+	int x;
+	struct pstat *ps;
+
+	if (argps(1, 0, &ps) < 0 || argint(0, &x) < 0)
+		return -1;
+	
+	return procstat(x, ps);
+
+	return -1;
 }

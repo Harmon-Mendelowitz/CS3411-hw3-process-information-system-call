@@ -101,15 +101,23 @@ memmove(void *vdst, void *vsrc, int n)
 void
 ps(void)
 {
+	//loop procstat call using myproc() - syscall
 	int x = 0;
-	struct pstat ps;
-	//ps->pid = 0;
-	//ps->ppid = 0;
-	//ps->state = 0;
-	//memset(&ps->name[0], 0, sizeof(ps->name));
+	struct pstat *ps = (struct pstat*)0;
 
-	procstat(x, &ps);
+		//ps->pid = 0;
+		//ps->ppid = 0;
+		//ps->state = 0;
+		//memset(&ps->name[0], 0, sizeof(ps->name));
+	//if (argfd(0, 0, &ps) < 0 || argint(1, &x) < 0)
+		//return;
+
+	//if (argptr(1, (void *)&ps, sizeof(*ps)) < 0)
+	//	return;
 	printf(1, "ps\n");
-	printf(1, "%d %d %c %s\n", ps->pid, ps->ppid, ps->state, ps->name);
+	int a = procstat(x, ps);
+	printf(1, "ps %d\n", a);
+	//printf(1, "%d %d %c %s\n", (&ps)->pid, (&ps)->ppid, (&ps)->state, (&ps)->name);
+	//printf(1, "%d %d \n", (ps)->pid, (ps)->ppid);
 	return;
 }

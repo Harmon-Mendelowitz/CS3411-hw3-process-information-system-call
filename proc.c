@@ -508,9 +508,8 @@ procdump(void)
 	}
 }
 
-
-/*int
+int
 procstat(uint which, struct pstat *ps)
 {
-	return 0;
-}*/
+	return 5;
+}
