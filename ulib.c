@@ -104,17 +104,10 @@ ps(void)
 	//loop procstat call using myproc() - syscall
 
 	struct pstat* p = (struct pstat*)sbrk(sizeof(struct pstat));
-	
-		//ps->pid = 0;
-		//ps->ppid = 0;
-		//ps->state = 0;
-		//memset(&ps->name[0], 0, sizeof(ps->name));
-	//if (argfd(0, 0, &ps) < 0 || argint(1, &x) < 0)
-		//return;
 
 	//if (argptr(1, (void *)&ps, sizeof(*ps)) < 0)
 	//	return;
-	printf(1, "ps\n");
+	//printf(1, "ps\n");
 	for(int x=0; x<64; x++){
 		//printf(1, "number: %d\n", x);
 
@@ -128,7 +121,7 @@ ps(void)
 		else{
 			if(a == 0){
 				if(p != 0)
-					printf(1, "proc: %d %d %c %s\n", p->pid, p->ppid, p->state, p->name);
+					printf(1, "%d %d %c %s\n", p->pid, p->ppid, p->state, p->name);
 			}
 		}
 	}

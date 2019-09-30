@@ -518,14 +518,24 @@ procstat(uint which, struct pstat *ps)
 	{
 		if(p->state == UNUSED)
 		{
-			return -10;
+			return -1;
 		}
 		if(ps != 0){
 			ps->pid = p->pid;
 			strncpy(ps->name, p->name, 16);
 			//ps->name = p->name;
 			ps->ppid = p->parent->pid;
-			ps->state = p->state;
+			//ps->state = p->state;
+			if(p->state == EMBRYO)
+				ps->state = 'E';
+			else if(p->state == SLEEPING)
+				ps->state = 'S';
+			else if(p->state == RUNNABLE)
+				ps->state = 'N';
+			else if(p->state == RUNNING)
+				ps->state = 'R';
+			else if(p->state == ZOMBIE)
+				ps->state = 'Z';
 			return 0;
 		}
 	}

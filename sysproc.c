@@ -129,7 +129,7 @@ sys_procstat(void)
 	//ps = (struct pstat*)sys_sbrk();
 
 	if (argint(0, &x) < 0 || argps(1, &ps, x) < 0)
-		return -5;
+		return -1;
 	
 	return procstat(x, ps);
 
