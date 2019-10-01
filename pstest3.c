@@ -12,36 +12,37 @@ main(int argc, char **argv)
             sleep(10);
             exit();
         }
-        else{}
         //second grandchild
         if(fork() == 0){
             sleep(10);
             exit();
         }
-        else{}
-        sleep(10);
+        //sleep(10);
+        wait();
+        wait();
         exit();
     }
-    //second child
-    if(fork() == 0){
-        //third grandchild
-        if(fork() == 0){
-            sleep(10);
-            exit();
-        }
-        else{}
-        //fourth grandchild
-        if(fork() == 0){
-            sleep(10);
-            exit();
-        }
-        else{}
-        sleep(10);
-        exit();
-    }  
     //parent
     else{
+    //second child
+        if(fork() == 0){
+            //third grandchild
+            if(fork() == 0){
+                sleep(10);
+                exit();
+            }
+            //fourth grandchild
+            if(fork() == 0){
+                sleep(10);
+                exit();
+            }
+            wait();
+            wait();
+            exit();
+        }
+        sleep(2);
         ps();
+        wait();
         wait();
         exit();
     }

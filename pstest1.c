@@ -5,59 +5,24 @@
 int
 main(int argc, char **argv)
 {
-    int f1 = fork();
-
-    if(f1 == 0){
-        sleep(10);
-        exit();
-    }
-    else{
-        if(fork() != 0){
-            if(fork() != 0){
-                if(fork() != 0){
-                    if(fork() != 0){
-                        if(fork() != 0){
-                            if(fork() != 0){
-                                if(fork() != 0){
-                                    ps();
-                                    wait();
-                                    exit();
-                                }
-                                else{
-                                    sleep(10);
-                                    exit();
-                                }
-                            }
-                            else{
-                                sleep(10);
-                                exit();
-                            }
-                        }
-                        else{
-                            sleep(10);
-                            exit();
-                        }
-                    }
-                    else{
-                        sleep(10);
-                        exit();
-                    }
-                }
-                else{
-                    sleep(10);
-                    exit();
-                }
-            }
-            else{
-                sleep(10);
-                exit();
-            }
-        }
-        else{
+    for(int x=0; x<8; x++)
+    {
+        int c = fork();
+        if(c == 0){
             sleep(10);
             exit();
         }
     }
+    ps();
+    wait();
+    wait();
+    wait();
+    wait();
+    wait();
+    wait();
+    wait();
+    wait();
+    exit();
     
     return 0;
 }
