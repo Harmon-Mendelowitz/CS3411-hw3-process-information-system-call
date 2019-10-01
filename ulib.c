@@ -105,15 +105,8 @@ ps(void)
 
 	struct pstat* p = (struct pstat*)sbrk(sizeof(struct pstat));
 
-	//if (argptr(1, (void *)&ps, sizeof(*ps)) < 0)
-	//	return;
-	//printf(1, "ps\n");
 	for(int x=0; x<64; x++){
-		//printf(1, "number: %d\n", x);
-
-		//p[x] = (struct pstat*)sbrk(sizeof(struct pstat));
 		int a = procstat(x, p);
-		//printf(1, "ps %d\n", a);
 
 		if(a == 1){
 			x = 64;

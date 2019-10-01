@@ -1,4 +1,5 @@
 #include "user.h"
+#include "types.h"
 #include "pstat.h"
 
 int

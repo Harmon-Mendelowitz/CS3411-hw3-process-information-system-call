@@ -512,7 +512,7 @@ int
 procstat(uint which, struct pstat *ps)
 {
 	struct proc *p;
-	//for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+
 	p = ptable.proc + (which);
 	if(p < &ptable.proc[NPROC])
 	{
@@ -523,9 +523,8 @@ procstat(uint which, struct pstat *ps)
 		if(ps != 0){
 			ps->pid = p->pid;
 			strncpy(ps->name, p->name, 16);
-			//ps->name = p->name;
 			ps->ppid = p->parent->pid;
-			//ps->state = p->state;
+
 			if(p->state == EMBRYO)
 				ps->state = 'E';
 			else if(p->state == SLEEPING)
@@ -539,6 +538,6 @@ procstat(uint which, struct pstat *ps)
 			return 0;
 		}
 	}
-	//}
+
 	return 1;
 }

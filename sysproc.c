@@ -117,16 +117,8 @@ sys_uptime(void)
 int
 sys_procstat(void)
 {
-	//ps = (struct pstat*)malloc(sizeof(struct pstat));
-	//ps = (struct pstat*)sys_sbrk();
-	//ps->pid = 1;
-	//ps->ppid = 1;
-	//ps->state = 0;
-	//memset(&ps->name[0], 0, sizeof(ps->name));
-
 	int x;
 	struct pstat *ps;
-	//ps = (struct pstat*)sys_sbrk();
 
 	if (argint(0, &x) < 0 || argps(1, &ps, x) < 0)
 		return -1;
