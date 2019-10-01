@@ -103,9 +103,9 @@ ps(void)
 {
 	//loop procstat call using myproc() - syscall
 
-	struct pstat* p = (struct pstat*)sbrk(sizeof(struct pstat));
-
 	for(int x=0; x<64; x++){
+		
+		struct pstat* p = (struct pstat*)sbrk(sizeof(struct pstat));
 		int a = procstat(x, p);
 
 		if(a == 1){
