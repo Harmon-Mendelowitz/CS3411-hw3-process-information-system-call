@@ -40,7 +40,7 @@ main(int argc, char **argv)
             wait();
             exit();
         }
-        sleep(2);
+        sleep(10);
         ps();
         wait();
         wait();
