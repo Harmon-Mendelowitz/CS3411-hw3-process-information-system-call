@@ -1,0 +1,14 @@
+xv6...
+cpu1: starting 1
+cpu0: starting 0
+sb: size 1000 nblocks 941 ninodes 200 nlog 30 logstart 2 inodestart 32 bmap start 58
+init: starting sh
+1 -401806205 S init
+2 1 S sh
+3 2 R usertests
+4 3 S usertests
+5 3 S usertests
+6 4 R usertests
+7 4 N usertests
+8 5 N usertests
+9 5 N usertests
