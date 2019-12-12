@@ -518,7 +518,7 @@ procstat(uint which, struct pstat *ps)
 	{
 		if(p->state == UNUSED)
 		{
-			return -1;
+			return 1;
 		}
 		if(ps != 0){
 			ps->pid = p->pid;
